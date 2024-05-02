@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Default Load Order (DO NOT CHANGE) -->
+    <!-- Stylesheets -->
+
+    <link rel="stylesheet" href="/src/styles/reset.css">
+    <link rel="stylesheet" href="/src/styles/globalStyles.css">
+    <link rel="stylesheet" href="/src/styles/header.css">
+    <link rel="stylesheet" href="/src/styles/main.css">
+    <link rel="stylesheet" href="/src/styles/footer.css">
+
+    <!-- Scripts Load Order -->
+
+    <script src="/src/scripts/main.js" defer></script>
+    <script src="/src/scripts/renderer.js" defer></script>
+
+    <title>Project: 1</title>
+</head>
+<body>
+    <header class="header__container">
+        <div class="header__content">
+            <div class="header__logo"></div>
+            <h1 class="header__title">
+                Project FileFolder
+            </h1>
+            <p class="copy">
+                &copy;
+            </p>
+        </div>
+    </header>
+
+    <nav class="nav__container">
+        <div class="nav__content">
+            <button class="nav__button--menu burger__menu"></button>
+            <input 
+            type="search"
+            class="nav__input--search input__box"
+            placeholder="O que está procurando?"
+            >
+        </div>
+    </nav>
+
+    <main class="main__container">
+
+        <form class="form__container">
+            <h2 class="form__title">
+                Adicionar vídeo
+            </h2>
+            <div class="form__content--add">
+                <input 
+                type="text"
+                class="form__input--add input__box"
+                placeholder="https://www.youtube.com/watch?v=AbCdE12345"
+                >
+                <input 
+                type="text"
+                class="form__input--title input__box"
+                placeholder="Título do vídeo"
+                >
+                <input 
+                type="text"
+                class="form__input--category input__box"
+                placeholder="Categoria do vídeo"
+                >
+            </div>
+            <button class="form__button--add-video">
+                Adicionar Vídeo
+            </button>
+        </form>
+
+        <section class="section__container--recent-videos">
+            <h2 class="section__title--recent">
+                Adicionados recentemente
+            </h2>
+            <ul class="section__list">
+
+            </ul>
+
+        </section>
+
+    </main>
+
+    <footer>
+        
+    </footer>
+</body>
+</html>
