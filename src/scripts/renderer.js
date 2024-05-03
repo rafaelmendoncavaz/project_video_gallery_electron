@@ -89,15 +89,15 @@ function renderVideos(videos) {
                 frameborder="0"
                 allowfullscreen
             ></iframe>
+            <div class="video__buttons--container">
+                <button class="video__buttons edit--button">
+                </button>
+                <button class="video__buttons delete--button">
+                </button>
+            </div>
             <div class="video__info">
                 <h3 class="video__title">${video.title}</h3>
                 <p class="video__category">${video.category}</p>
-                <div class="video__buttons--container">
-                    <button class="video__buttons edit--button">
-                    </button>
-                    <button class="video__buttons delete--button">
-                    </button>
-                </div>
             </div>
         </div>`
         videoList.appendChild(li)
