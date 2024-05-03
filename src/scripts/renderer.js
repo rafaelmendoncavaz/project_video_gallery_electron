@@ -165,11 +165,21 @@ function addEditDeleteEventListeners() {
 
             titleElement.addEventListener('blur', function () {
                 titleElement.contentEditable = false
+                const videoId = card.dataset.videoId
+                const editedVideo = videos.find(video => video.id === videoId)
+                if (editedVideo) {
+                    editedVideo.title = titleElement.textContent
+                }
             })
 
             categoryElement.addEventListener('blur', function () {
                 titleElement.contentEditable = false
                 categoryElement.contentEditable = false
+                const videoId = card.dataset.videoId
+                const editedVideo = videos.find(video => video.id === videoId)
+                if(editedVideo) {
+                    editedVideo.category = categoryElement.textContent
+                }
             })
         }
 
@@ -187,11 +197,11 @@ function addEditDeleteEventListeners() {
 
             if(confirm('Tem certeza que deseja excluir o vídeo?')) {
                 const videoId = card.dataset.videoId
-                console.log('Video ID to delete:', videoId)
+
                 // Removendo o vídeo do array
-                console.log('Videos array before deletion:', videos)
+
                 videos = videos.filter(video => video.id !== videoId)
-                console.log('Videos array after deletion:', videos)
+
                 // Renderize novamente
 
                 renderVideos(videos)

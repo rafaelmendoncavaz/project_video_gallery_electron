@@ -1,0 +1,52 @@
+@import url(globalStyles.css);
+
+.main__container {
+    max-width: 100%;
+    margin: 0 auto;
+    margin-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.form__container {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.7rem, 0.54rem + 0.511vw, 1rem);
+    align-items: center;
+    box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.5);
+    padding-bottom: 1.5rem;
+}
+
+.form__title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.form__content--add {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1rem, 0.734rem + 0.851vw, 1.5rem);
+    margin-top: 1.5rem;
+    max-width: 100%;
+    width: 50%;
+}
+
+.form__input--add, .form__input--title, .form__input--category {
+    padding: clamp(0.7rem, 0.54rem + 0.511vw, 1rem);
+    font-size: clamp(1rem, 0.734rem + 0.851vw, 1.5rem);
+}
+
+.form__button--add-video {
+    margin-top: clamp(0.7rem, 0.54rem + 0.511vw, 1rem);
+    max-width: 100%;
+    width: 30%;
+    padding: 0.6rem 1rem;
+    border-radius: 32px;
+    border-style: none;
+    background-color: var(--main-color);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--secondary-color);
+}

@@ -10,7 +10,9 @@
     <link rel="stylesheet" href="/src/styles/reset.css">
     <link rel="stylesheet" href="/src/styles/globalStyles.css">
     <link rel="stylesheet" href="/src/styles/header.css">
+    <link rel="stylesheet" href="/src/styles/nav.css">
     <link rel="stylesheet" href="/src/styles/main.css">
+    <link rel="stylesheet" href="/src/styles/section.css">
     <link rel="stylesheet" href="/src/styles/footer.css">
 
     <!-- Scripts Load Order -->
@@ -18,7 +20,8 @@
     <script src="/src/scripts/main.js" defer></script>
     <script src="/src/scripts/renderer.js" defer></script>
 
-    <title>Project: 1</title>
+    <link rel="icon" type="image/ico" href="/src/assets/favicon.ico">
+    <title>Project FileFolder</title>
 </head>
 <body>
     <header class="header__container">
@@ -27,15 +30,12 @@
             <h1 class="header__title">
                 Project FileFolder
             </h1>
-            <p class="copy">
-                &copy;
-            </p>
+            
         </div>
     </header>
 
     <nav class="nav__container">
         <div class="nav__content">
-            <button class="nav__button--menu burger__menu"></button>
             <input 
             type="search"
             class="nav__input--search input__box"
@@ -48,7 +48,7 @@
 
         <form class="form__container">
             <h2 class="form__title">
-                Adicionar vídeo
+                Adicionar um novo vídeo
             </h2>
             <div class="form__content--add">
                 <input 

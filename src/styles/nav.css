@@ -1,0 +1,27 @@
+@import url(/src/styles/globalStyles.css);
+
+.nav__container {
+    max-width: 100%;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.nav__content {
+    width: 70%;
+}
+
+.nav__input--search {
+    width: 100%;
+    padding: clamp(0.7rem, 0.54rem + 0.511vw, 1rem);
+    font-size: clamp(1.2rem, 1.04rem + 0.511vw, 1.5rem);
+    font-weight: 600;
+    padding-left: clamp(1.5rem, 0.702rem + 2.553vw, 3rem);
+    background-image: url(/src/assets/video_search.svg);
+    background-position: left .625rem center;
+    background-repeat: no-repeat;
+}

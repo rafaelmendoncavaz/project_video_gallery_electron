@@ -1,0 +1,43 @@
+:root {
+    font-family: 'Inter', sans-serif;
+    --bg-color: #363636;
+    --main-color: #69E21B;
+    --secondary-color: #484846;
+    --tertiary-color: #595958;
+    --alternate-color: #ffffff;
+    box-sizing: border-box;
+    font-style: italic;
+    color: var(--main-color);
+}
+
+body {
+    background-color: var(--secondary-color);
+}
+
+.input__box {
+    border-radius: 2rem;
+    background-color: var(--bg-color);
+    color: var(--main-color);
+    border: solid 2px var(--bg-color);
+    font-style: italic;
+}
+
+.input__box:focus {
+    outline: none;
+}
+
+.form__button--add-video:active, .form__button--add-video:hover {
+    background-color: #4DB40B;
+}
+
+.video__title:focus, .video__category:focus {
+    outline: none;
+    border: solid .125rem;
+    border-radius: 2rem;
+    border-color: var(--main-color);
+    background-color: var(--bg-color);
+}
+
+.video__container:hover {
+    border-color: var(--main-color);
+}

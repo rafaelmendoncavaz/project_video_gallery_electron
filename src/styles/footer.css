@@ -1,0 +1,6 @@
+@import url(/src/styles/globalStyles.css);
+
+footer {
+    background-color: var(--bg-color);
+    height: 5rem;
+}

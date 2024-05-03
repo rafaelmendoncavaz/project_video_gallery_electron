@@ -1,0 +1,77 @@
+@import url(globalStyles.css);
+
+.section__container--recent-videos {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+}
+
+.section__title--recent {
+    margin-block: 3rem;
+    font-size: clamp(1rem, 0.734rem + 0.851vw, 1.5rem);
+    text-align: center;
+}
+
+.section__list {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    max-width: 100%;
+    flex-flow: row wrap;
+    gap: clamp(1rem, 0.468rem + 1.702vw, 2rem);
+}
+
+.video__container {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 0.5rem;
+    border: solid 2px transparent;
+    border-radius: .5rem;
+    box-shadow: .125rem .25rem .375rem rgba(0, 0, 0, 0.5);
+    padding: .5rem;
+}
+
+.video__info {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.25rem, 0.117rem + 0.426vw, 0.5rem);
+}
+
+.video__title {
+    font-size: clamp(1.25rem, 1.117rem + 0.426vw, 1.5rem);
+    font-weight: 600;
+}
+
+.video_category {
+    font-size: clamp(1rem, 0.867rem + 0.426vw, 1.25rem);
+}
+
+.video__buttons--container {
+    display: flex;
+    gap: 1rem;
+}
+
+.edit--button {
+    background-image: url(/src/assets/edit_icon.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: transparent;
+    border-style: none;
+    cursor: pointer;
+}
+
+.delete--button {
+    background-image: url(/src/assets/delete_icon.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: transparent;
+    border-style: none;
+    cursor: pointer;
+}
