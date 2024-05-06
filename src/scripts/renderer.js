@@ -35,6 +35,7 @@ const videoList = document.querySelector('.section__list')
 
 form.addEventListener('submit', function(event) {
     event.preventDefault()
+    event.stopPropagation()
 
     // Capturar valor dos inputs
 
@@ -96,8 +97,14 @@ function renderVideos(videos) {
                 </button>
             </div>
             <div class="video__info">
-                <h3 class="video__title">${video.title}</h3>
-                <p class="video__category">${video.category}</p>
+                <div class="video__title--container">
+                    <div class="title__icon--container"></div>
+                    <h3 class="video__title">${video.title}</h3>
+                </div>
+                <div class="video__category--container">
+                    <div class="category__icon--container"></div>
+                    <p class="video__category">${video.category}</p>
+                </div>
             </div>
         </div>`
         videoList.appendChild(li)
@@ -147,6 +154,7 @@ function addEditDeleteEventListeners() {
 
         if(target.classList.contains('edit--button')) {
             event.preventDefault()
+            event.stopPropagation()
 
             // Localize o card mais próximo para editar
 
@@ -187,6 +195,7 @@ function addEditDeleteEventListeners() {
 
         if(target.classList.contains('delete--button')) {
             event.preventDefault()
+            event.stopPropagation()
 
             // Localize o card mais próximo para deletar
 

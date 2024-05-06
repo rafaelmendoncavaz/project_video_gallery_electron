@@ -4,7 +4,10 @@
     max-width: 100%;
     margin: 0 auto;
     margin-top: 1.5rem;
-    padding-bottom: 1.5rem;
+    padding-bottom: 8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .form__container {
@@ -41,7 +44,7 @@
     max-width: 100%;
     width: 30%;
     padding: 0.6rem 1rem;
-    border-radius: 32px;
+    border-radius: 2rem;
     border-style: none;
     background-color: var(--main-color);
     cursor: pointer;
@@ -49,4 +52,40 @@
     font-size: 1rem;
     font-weight: 600;
     color: var(--secondary-color);
+}
+
+/* FOR TABLETS */
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .form__content--add {
+        gap: clamp(1rem, 0.734rem + 0.851vw, 1.5rem);
+        margin-top: 1.5rem;
+        max-width: 100%;
+        width: 85%;
+    }
+
+    .form__button--add-video {
+        width: 50%;
+    }
+}
+
+/* FOR SMARTPHONES */
+
+@media screen and (max-width: 767px) {
+    .form__title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    .form__content--add {
+        gap: clamp(1rem, 0.734rem + 0.851vw, 1.5rem);
+        margin-top: 1.5rem;
+        max-width: 100%;
+        width: 90%;
+    }
+
+    .form__button--add-video {
+        width: 75%;
+    }
 }

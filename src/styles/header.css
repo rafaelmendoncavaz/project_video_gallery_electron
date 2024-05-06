@@ -36,3 +36,37 @@
     gap: 10px;
     max-width: 100%;
 }
+
+/* FOR TABLETS */
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .header__container {
+        padding: 1.25rem;
+    }
+
+    .header__logo {
+        width: clamp(3rem, 2.286rem + 1.905vw, 4rem);
+        height: clamp(3rem, 2.286rem + 1.905vw, 4rem);
+    }
+
+    .header__title {
+        font-size: clamp(1.5rem, 0.786rem + 1.905vw, 2.5rem);   
+    }
+}
+
+/* FOR SMARTPHONES */
+
+@media screen and (max-width: 767px) {
+    .header__container {
+        padding: 1rem;
+    }
+
+    .header__logo {
+        width: clamp(2rem, 1.286rem + 1.905vw, 3rem);
+        height: clamp(2rem, 1.286rem + 1.905vw, 3rem);
+    }
+
+    .header__title {
+        font-size: clamp(1.25rem, 1.071rem + 0.476vw, 1.5rem);  
+    }
+}
