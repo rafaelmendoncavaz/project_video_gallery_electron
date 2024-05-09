@@ -11,15 +11,22 @@ searchInput.addEventListener('input', function(event) {
 
     // Filtrar videos baseado nos termos de busca
 
-    const filteredVideos = videos.filter(video => 
-    video.title.toLowerCase().includes(searchTerm) ||
-    video.category.toLowerCase().includes(searchTerm)
-    )
-
-    // Renderiza os videos filtrados
-
-    renderVideos(filteredVideos)
-
+    fetch(`http://localhost:3000/api/items?search=${searchTerm}`, {
+        method: 'GET',
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Failed to fetch data')
+        }
+        return response.json()
+    })
+    .then(filteredData => {
+        console.log('Filtered data:', filteredData)
+        renderFilteredVideos(filteredData)
+    })
+    .catch(error => {
+        console.error('Error fetching filtered data:', error)
+    })
 })
 
 // Form & Add Video
@@ -37,7 +44,7 @@ form.addEventListener('submit', function(event) {
     event.preventDefault()
     event.stopPropagation()
 
-    // Capturar valor dos inputs
+        // Capturar valor dos inputs
 
     const videoUrl = form.querySelector('.form__input--add').value 
     const videoTitle = form.querySelector('.form__input--title').value
@@ -45,22 +52,35 @@ form.addEventListener('submit', function(event) {
 
     // Retirar ID do video
 
-    const videoId = extractVideoId(videoUrl)
+    const urlId = extractVideoId(videoUrl)
 
     const newVideo = {
         id: generateUniqueId(),
         title: videoTitle,
         category: videoCategory,
-        videoId: videoId
+        videoId: urlId
     }
 
-    // Armazenar os vídeos em um array
+    // Armazenar os vídeos em data.json
+    
+    fetch('http://localhost:3000/api/items', {
+        method: 'POST',
+        headers: {
+            'Content-type': 'application/json',
+        },
+        body: JSON.stringify(newVideo),
+    })
+    .then(response => response.json())
+    .then(addedVideo => {
+        console.log('New Video added:', addedVideo)
+        
+        // Renderizando os videos
 
-videos.unshift(newVideo)
-
-    // Renderizando os videos
-
-renderVideos(videos)
+        renderVideos()
+    })
+    .catch(error => {
+        console.error('Error adding new video:', error)
+    })
 
     // Limpando os campos preenchidos
 
@@ -70,15 +90,60 @@ form.reset()
 
 // Renderizando Videos
 
-function renderVideos(videos) {
+function renderVideos() {
 
-    // Limpando a lista de videos
+    fetch('http://localhost:3000/api/items')
+        .then(response => response.json())
+        .then(videos => {
 
+            // Limpando a lista de videos
+
+            videoList.innerHTML = ''
+
+            // Iterando o array de videos para criar um card para cada video
+
+            videos.forEach(video => {
+
+                const li = document.createElement('li')
+
+                li.innerHTML = `
+                <div class="video__container" data-video-id="${video.id}">
+                    <iframe
+                        class="video__iframe"
+                        src="https://www.youtube.com/embed/${video.videoId}"
+                        frameborder="0"
+                        allowfullscreen
+                    ></iframe>
+                    <div class="video__buttons--container">
+                        <button class="video__buttons edit--button">
+                        </button>
+                        <button class="video__buttons delete--button">
+                        </button>
+                    </div>
+                    <div class="video__info">
+                        <div class="video__title--container">
+                            <div class="title__icon--container"></div>
+                            <h3 class="video__title">${video.title}</h3>
+                        </div>
+                        <div class="video__category--container">
+                            <div class="category__icon--container"></div>
+                            <p class="video__category">${video.category}</p>
+                        </div>
+                    </div>
+                </div>`
+                videoList.appendChild(li)
+            })
+        })
+        .catch(error => {
+            console.error('Error fetching videos:', error)
+        })
+}
+
+renderVideos()
+
+function renderFilteredVideos(filteredData) {
     videoList.innerHTML = ''
-
-    // Iterando o array de videos para criar um card para cada video
-
-    videos.forEach(video => {
+    filteredData.forEach(video => {
 
         const li = document.createElement('li')
 
@@ -161,39 +226,70 @@ function addEditDeleteEventListeners() {
             const card = target.closest('.video__container')
             if (!card) return
 
-            // Torne os campos editáveis
+            // Obter o ID do video
 
-            const titleElement = card.querySelector('.video__title')
-            const categoryElement = card.querySelector('.video__category')
-            titleElement.contentEditable = true
-            categoryElement.contentEditable = true
-            titleElement.focus()
-
-            // Tornando não editável novamente
-
-            titleElement.addEventListener('blur', function () {
-                titleElement.contentEditable = false
-                const videoId = card.dataset.videoId
-                const editedVideo = videos.find(video => video.id === videoId)
-                if (editedVideo) {
-                    editedVideo.title = titleElement.textContent
-                }
+            const videoId = card.dataset.videoId
+            
+            fetch(`http://localhost:3000/api/items/${videoId}`, {
+                method: 'GET',
             })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch video data')
+                    }
+                    return response.json()
+                })
+                .then(existingVideo => {
+                    // Torne os campos editáveis
 
-            categoryElement.addEventListener('blur', function () {
-                titleElement.contentEditable = false
-                categoryElement.contentEditable = false
-                const videoId = card.dataset.videoId
-                const editedVideo = videos.find(video => video.id === videoId)
-                if(editedVideo) {
-                    editedVideo.category = categoryElement.textContent
-                }
-            })
+                    const titleElement = card.querySelector('.video__title')
+                    const categoryElement = card.querySelector('.video__category')
+                    // Novos valores dos campos editaveis
+
+                    titleElement.contentEditable = true
+                    categoryElement.contentEditable = true
+                    titleElement.focus()
+
+                    // Tornando não editável novamente
+
+                    titleElement.addEventListener('blur', function () {
+                        titleElement.contentEditable = false
+                        const updatedVideo = {
+                            id: card.getAttribute('data-video-id'),
+                            title: titleElement.textContent,
+                            category: categoryElement.textContent,
+                            videoId: existingVideo.videoId
+                        }
+                        updateEditedData(videoId, updatedVideo)
+                    })
+
+                    categoryElement.addEventListener('blur', function () {
+                        titleElement.contentEditable = false
+                        categoryElement.contentEditable = false
+                        const updatedVideo = {
+                            id: card.getAttribute('data-video-id'),
+                            title: titleElement.textContent,
+                            category: categoryElement.textContent,
+                            videoId: existingVideo.videoId
+                        }
+                        updateEditedData(videoId, updatedVideo)
+                    })
+                })
+                .catch(error => {
+                    console.error('Error fetching video data:', error)
+                })
+
         }
-
+        
         // Verificação do tipo de botão: Deletar
 
         if(target.classList.contains('delete--button')) {
+
+            const confirmation = confirm('Tem certeza que deseja excluir o vídeo?')
+            if(!confirmation) {
+                return
+            }
+
             event.preventDefault()
             event.stopPropagation()
 
@@ -202,21 +298,54 @@ function addEditDeleteEventListeners() {
             const card = target.closest('.video__container')
             if (!card) return
 
-            // Torne o card deletável
+            // Obter ID do video
 
-            if(confirm('Tem certeza que deseja excluir o vídeo?')) {
-                const videoId = card.dataset.videoId
+            const videoId = card.dataset.videoId
 
-                // Removendo o vídeo do array
+            // Requerimento de deletar
 
-                videos = videos.filter(video => video.id !== videoId)
+            fetch(`http://localhost:3000/api/items/${videoId}`, {
+                method: 'DELETE',
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Video deleted successfully')
+                    card.remove()
+                     // Renderize novamente
 
-                // Renderize novamente
-
-                renderVideos(videos)
-            }
+                    renderVideos()
+                } else {
+                    throw new Error('Failed to delete video')
+                }
+            })
+            .catch(error => {
+                console.error('Error deleting video:', error)
+            })
         }
     })
-
 }
 addEditDeleteEventListeners()
+
+// Requisitando dados para atualizar
+
+function updateEditedData(videoId, updatedVideo) {
+    fetch(`http://localhost:3000/api/items/${videoId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updatedVideo)
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to update video data')
+            }
+            return response.json()
+        })
+        .then(updatedVideo => {
+            console.log('Video updated:', updatedVideo)
+        })
+        .catch(error => {
+            console.error('Error updating video:', error)
+        })
+}
