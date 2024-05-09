@@ -22,6 +22,11 @@ body {
     font-style: italic;
 }
 
+.input__box::placeholder {
+    color: rgb(105 226 27 / 40%);
+
+}
+
 .input__box:focus {
     outline: none;
 }

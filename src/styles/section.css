@@ -56,7 +56,7 @@
 }
 
 .title__icon--container {
-    background-image: url(/src/assets/title_icon.svg);
+    background-image: url(../assets/title_icon.svg);
     background-repeat: no-repeat;
     background-size: contain;
     width: 1.5rem;
@@ -72,7 +72,7 @@
 }
 
 .category__icon--container {
-    background-image: url(/src/assets/category_icon.svg);
+    background-image: url(../assets/category_icon.svg);
     background-repeat: no-repeat;
     background-size: contain;
     width: 1.25rem;
@@ -92,7 +92,7 @@
 }
 
 .edit--button {
-    background-image: url(/src/assets/edit_icon.svg);
+    background-image: url(../assets/edit_icon.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -104,12 +104,12 @@
 }
 
 .delete--button {
-    background-image: url(/src/assets/delete_icon.svg);
+    background-image: url(../assets/delete_icon.svg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 1.25rem;
+    height: 1.25rem;
     background-color: transparent;
     border-style: none;
     cursor: pointer;

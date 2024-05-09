@@ -1,4 +1,4 @@
-@import url(/src/styles/globalStyles.css);
+@import url(globalStyles.css);
 
 footer {
     background-color: var(--bg-color);
@@ -31,7 +31,7 @@ footer {
 }
 
 .footer__logo {
-    background-image: url(/src/assets/logo.svg);
+    background-image: url(../assets/logo.svg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
