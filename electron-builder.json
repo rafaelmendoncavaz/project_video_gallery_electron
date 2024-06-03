@@ -1,0 +1,19 @@
+{
+  "appId": "proj.file.folder",
+  "productName": "Project FileFolder",
+  "directories": {
+    "output": "Project FileFolder"
+  },
+  "win": {
+    "target": "portable",
+    "icon": "src/assets/favicon.ico"
+  },
+  "mac": {
+    "target": "dmg",
+    "icon": "src/assets/favicon.ico"
+  },
+  "linux": {
+    "target": "AppImage",
+    "icon": "src/assets/favicon.ico"
+  }
+}

@@ -1,10 +1,12 @@
 const { app, BrowserWindow } = require('electron')
 const { startServer } = require('./server')
+const path = require('path')
 
 function createWindow() {
     const mainWindow = new BrowserWindow({
-        width: 1280,
-        height: 720,
+        width: 1920,
+        height: 1080,
+        fullscreen: true,
         webPreferences: {
             nodeIntegration: true
         }
