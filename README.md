@@ -76,6 +76,12 @@ electron-builder.json
   $ npm install electron-builder --save-dev
   ```
 
+5. Install Express to handle server
+
+  ```vim
+    $ npm install express --save-dev
+  ```
+
 6. Start the App before building to make sure everything is working!
 
   ```vim
